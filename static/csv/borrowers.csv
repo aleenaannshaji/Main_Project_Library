@@ -1,0 +1,31 @@
+borrower_id,fullname,gender,address,vio_count,created_at,updated_at,resetmonth
+1,Aleena Ann Shaji,Female,Tharakunnel,0,3/30/2022 4:51,3/30/2022 4:53,4
+2,Alfiya P S,Female,Kizhakkekkara,0,3/30/2022 4:51,3/30/2022 4:51,4
+3,Akhila S Raj,Female,mooledathu,0,3/30/2022 4:51,3/30/2022 4:51,4
+4,Athira K P,Female,kochira,0,3/30/2022 4:51,3/30/2022 4:51,4
+5,Abhiramy S Nair,Female,kilimaanoor,0,3/30/2022 4:51,3/30/2022 4:51,4
+6,Abhinamol V,Female,chittedathu,0,3/30/2022 4:51,3/30/2022 4:51,4
+7,Binisha C B,Female,oorothu,0,3/30/2022 4:51,3/30/2022 4:51,4
+8,Anagha P,Male,paadiyil,0,3/30/2022 4:51,3/30/2022 4:51,4
+9,Marlon Dooley PhD,Male,vayalumkal,0,3/30/2022 4:51,3/30/2022 4:51,4
+10,Flossie Boyle,Female,kunnathoor,0,3/30/2022 4:51,3/30/2022 4:51,4
+11,Tyra Zboncak,Male,Tharakunnel,0,3/30/2022 4:51,3/30/2022 4:53,4
+12,Prof. Malinda Reilly,Male,Kizhakkekkara,0,3/30/2022 5:00,3/30/2022 5:01,4
+13,Shayne Stanton,Female,mooledathu,0,4/30/2022 5:00,4/30/2022 5:01,4
+14,Prof. Imelda Schmeler,Male,kochira,0,4/30/2022 5:02,4/30/2022 5:03,4
+15,Elmo Gutmann,Male,kilimaanoor,0,3/30/2022 5:00,3/30/2022 5:01,4
+16,Dr. Marcella Gleason ,Female,chittedathu,0,4/30/2022 5:00,4/30/2022 5:01,4
+17,Abhinand K S,Male,oorothu,0,4/30/2022 5:02,4/30/2022 5:03,4
+18,Abdul Raoof,Male,paadiyil,0,3/30/2022 4:51,3/30/2022 4:51,4
+19,Akash J Thomas,Male,vayalumkal,0,3/30/2022 4:51,3/30/2022 4:51,4
+20,Akhil Shine,Male,kunnathoor,0,3/30/2022 4:51,3/30/2022 4:53,4
+21,Akku Shaji,Male,edamanoor,0,3/30/2022 5:00,3/30/2022 5:01,4
+22,Althaf Shajahan,Male,chittedathu,0,4/30/2022 5:00,4/30/2022 5:01,4
+23,Amal Babu,Male,kochira,0,4/30/2022 5:02,4/30/2022 5:03,4
+24,Amal Jose Kurian,Male,mooledathu,0,3/30/2022 5:00,3/30/2022 5:01,4
+25,Amil Joseph,Female,meledathu,0,4/30/2022 5:00,4/30/2022 5:01,4
+26,Effie Oberbrunner,Male,chittadiyil,0,4/30/2022 5:02,4/30/2022 5:03,4
+27,Anjali Raj,Female,melorathu,0,4/30/2022 5:02,4/30/2022 5:03,4
+28,Anina Elizabeth,Female,thengana,0,3/30/2022 5:00,3/30/2022 5:01,4
+29,Dina Dileep,Female,velloor,0,4/30/2022 5:00,4/30/2022 5:01,4
+30,Sreelakshmi S,Female,pampady,0,4/30/2022 5:02,4/30/2022 5:03,4

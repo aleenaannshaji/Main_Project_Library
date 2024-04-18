@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #f8b9b9; /* Adjust border properties as needed */
+            padding: 20px; /* Add padding to the container */
+            border-radius: 8px; /* Optional: Add border radius for a rounded look */
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: aqua;
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Library Management System</h3>
+        <p>Library Management System is a very user-friendly platform</p>
+        <p>Here students or staff can request to borrow a book or make a reservation</p><br>
+
+        <a href="{% url 'index' %}"> <button type="button">Home</button></a>  
+    </div><br><br>
+</body>
+</html>

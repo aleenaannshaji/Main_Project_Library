@@ -1,0 +1,100 @@
+<!-- admin_borrow_requests.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Borrow Requests</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-right: 5px;
+        }
+
+        /* Approve button style */
+        button.approve {
+            background-color: #4CAF50;  /* Green */
+        }
+
+        /* Reject button style */
+        button.reject {
+            background-color: #f44336;  /* Red */
+        }
+    </style>
+</head>
+<body>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <script>
+            // Display alert when the page is loaded with a success or error message
+            document.addEventListener("DOMContentLoaded", function() {
+                let alertMessages = document.querySelectorAll(".messages li");
+                alertMessages.forEach(function(message) {
+                    alert(message.innerText);
+                });
+            });
+        </script>
+    {% endif %}
+    <br><br><center>
+    <h2>Borrow Requests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in borrow_requests %}
+                <tr>
+                    <td>{{ request.student.name }}</td>
+                    <td>{{ request.book.title }}</td>
+                    <td>{{ request.book.author }}</td>
+                    <td>{{ request.book.category }}</td>
+                    <td>
+                        <form method="post" action="{% url 'admin_approve_request' request.id %}">
+                            {% csrf_token %}
+                            <button class="approve" type="submit" name="action" value="approve">Approve</button>
+                        </form>
+                        <form method="post" action="{% url 'admin_approve_request' request.id %}">
+                            {% csrf_token %}
+                            <button class="reject" type="submit" name="action" value="reject">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table></center>
+    
+</body>
+</html>

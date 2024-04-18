@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Students</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 70%;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #79c6d9;
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body><center>
+    <div class="container">
+        <h1>Search Students</h1>
+
+        <div class="card">
+            <form method="get" action="{% url 'search_students' %}">
+                <label for="search">Search by ID or Name:</label>
+                <input type="text" name="q" id="search" value="{{ query }}">
+                <button type="submit">Search</button>
+            </form>
+        </div></center>
+
+        {% if students %}
+            <h2>Search Results:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Email ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>{{ student.id }}</td>
+                            <td><a href="{% url 'student_borrowed_books' student.id %}">{{ student.name }}</a></td>
+                            
+                            <td>{{ student.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No students found.</p>
+        {% endif %}
+    </div>
+</body><br> <a href="{% url 'adminhome' %}"><button type="button" style="background-color: burlywood; width: 80px; height: 50px;">Go Back</button></a>
+
+</html>

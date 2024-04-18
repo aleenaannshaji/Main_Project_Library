@@ -1,0 +1,106 @@
+<!-- newbook_request.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add your head content here -->
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+
+        /* Button styles */
+        .container form button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .container form button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>New Book Requests</h2>
+
+        {% if book_requests %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                        <th>Edition</th>
+                        <th>No.of Copies</th>
+                        <th>Request Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in book_requests %}
+                        <tr>
+                            <td>{{ request.student.name }}</td>
+                            <td>{{ request.title }}</td>
+                            <td>{{ request.author }}</td>
+                            <td>{{ request.publisher }}</td>
+                            <td>{{ request.category }}</td>
+                            <td>{{ request.edition }}</td>
+                            <td>{{ request.no_of_copies }}</td>
+                            <td>{{ request.request_date }}</td>
+                            <td>
+                                <form action="{% url 'book_approve_request' request.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit">Approve</button>
+                                </form>
+                                <form action="{% url 'book_reject_request' request.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" style="background-color: red;">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No book requests found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

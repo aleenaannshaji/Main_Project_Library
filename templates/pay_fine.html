@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Fine</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        .container-card {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #80ed7a;
+        }
+        .pay-now-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-now-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            background-color: #760f78;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #7a1a7e;
+        }
+
+    </style>
+</head>
+<body>
+<center><br><br><br><br>
+    <div class="container-card">
+        <center><h2>PAY FINE</h2></center><br>
+        <p>You have a fine of {{ borrowed_book.fine_amount }}.</p>
+        
+        <form method="POST" action="{% url 'pay_fine' borrowed_book.id %}" id="payment-form">
+            {% csrf_token %}
+            <input type="hidden" name="amount" value="{{ amount }}">
+            <input type="hidden" name="booking_id" value="{{ borrowed_book.id }}">
+            <button id="rzp-button1" class="pay-now-btn" type="submit">PAY NOW</button>
+        </form>
+        
+    </div>
+    <a href="{% url 'student' %}"> <button class="back-btn" type="button">BACK</button></a>
+</center>  
+
+
+<script>
+    var options = {
+        "key": "rzp_test_a8SpiQASAPrLki",  // Your Razorpay API Key
+        "amount": "{{ amount_paisa }}",  // Pass the amount directly without multiplication
+        "currency": "INR",
+        "name": "Library Payment",
+        "description": "Fine Payment",
+        "order_id": "{{ payid }}",
+        "handler": function (response) {
+            // Handle payment success
+            console.log(response);
+            // Redirect to a success page with both razorpay_payment_id and booking_id
+            window.location.href = "/payment-success/" + response.razorpay_payment_id + "/?booking_id={{ borrowed_book.id }}";
+        },
+        "prefill": {
+            "name": "{{ borrowed_book.student.name }}",
+            "email": "{{ borrowed_book.student.email }}"
+        },
+        "theme": {
+            "color": "#3498db"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+</body>
+</html>

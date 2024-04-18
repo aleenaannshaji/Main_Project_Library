@@ -1,0 +1,71 @@
+<!-- review_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review List</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+    <h2>Review List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Review Description</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.borrowed_book.student.name }}</td>
+                <td>{{ review.borrowed_book.student.email }}</td>
+                <td>{{ review.borrowed_book.book.title }}</td>
+                <td>{{ review.borrowed_book.book.author }}</td>
+                <td>{{ review.borrowed_book.book.category }}</td>
+                <td>{{ review.description }}</td>
+                <td>{{ review.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+</body>
+</html>

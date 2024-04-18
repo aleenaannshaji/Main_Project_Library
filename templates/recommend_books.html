@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Books</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            border: 2px solid #68f153; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: rgb(133, 117, 253);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <center><h1>Recommended Books</h1></center>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in recommended_books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.category }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

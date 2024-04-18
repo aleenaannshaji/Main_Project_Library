@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Department</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-right: 25px;
+            padding-left: 25px;
+            width: 500px;
+            height: 250px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+<body><center><br><br>
+    <div class="form-container">
+    <h3>Add Department</h3><br><br>
+    <form method="post" action="{% url 'add_department' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+        
+        <br><br><button type="submit" style="margin-left : 95px; width: 25%; height: 30px;">Add Department</button>
+    </form></div></center>
+</body>
+</html>

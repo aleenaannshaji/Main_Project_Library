@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request New Book</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Request New Book</h2>
+        <form id="bookRequestForm" method="post" action="{% url 'request_book'%}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" required>
+            <span class="error-message" id="titleError"></span>
+
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" required>
+            <span class="error-message" id="authorError"></span>
+
+            <label for="publisher">Publisher:</label>
+            <input type="text" name="publisher" id="publisher">
+            <span class="error-message" id="publisherError"></span>
+
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category">
+            <span class="error-message" id="categoryError"></span>
+
+            <label for="edition">Edition:</label>
+            <input type="text" name="edition" id="edition" required>
+            <span class="error-message" id="editionError"></span>
+
+            <!-- Add the following input field for no_of_copies -->
+            <label for="no_of_copies">Number of Copies:</label>
+            <input type="number" name="no_of_copies" id="no_of_copies" min="1" value="1" required>
+            <span class="error-message" id="no_of_copiesError"></span>
+
+
+            <button type="submit" id="submit" onclick="validateForm()">Submit Request</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Get form elements
+var title = document.getElementById('title');
+var author = document.getElementById('author');
+var publisher = document.getElementById('publisher');
+var category = document.getElementById('category');
+var edition = document.getElementById('edition');
+var no_of_copies = document.getElementById('no_of_copies');  // Add this line
+
+// Reset previous error messages
+document.getElementById('titleError').textContent = '';
+document.getElementById('authorError').textContent = '';
+document.getElementById('publisherError').textContent = '';
+document.getElementById('categoryError').textContent = '';
+document.getElementById('editionError').textContent = '';
+document.getElementById('no_of_copiesError').textContent = '';  // Add this line
+
+// Validate Number of Copies
+if (isNaN(no_of_copies.value) || no_of_copies.value < 1) {
+    document.getElementById('no_of_copiesError').textContent = 'Please enter a valid number of copies (minimum 1)';
+}
+
+
+            // Validate Title
+            if (!/^[a-zA-Z\s]*$/.test(title.value.trim())) {
+                document.getElementById('titleError').textContent = 'Title is required and can only contain alphabets';
+            }
+
+            // Validate Author
+            if (!/^[a-zA-Z\s]*$/.test(author.value.trim())) {
+                document.getElementById('authorError').textContent = 'Author is required and can only contain alphabets';
+            }
+
+            // Validate Publisher
+            if (!/^[a-zA-Z\s]*$/.test(publisher.value.trim())) {
+                document.getElementById('publisherError').textContent = 'Publisher can only contain alphabets';
+            }
+
+            // Validate Category
+            if (!/^[a-zA-Z\s]*$/.test(category.value.trim())) {
+                document.getElementById('categoryError').textContent = 'Category can only contain alphabets';
+            }
+
+            // Validate Edition
+            if (edition.value.trim() === '') {
+                document.getElementById('editionError').textContent = 'Edition is required';
+            }
+        }
+    </script>
+</body>
+</html>

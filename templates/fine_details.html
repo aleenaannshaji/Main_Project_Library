@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Details</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            border: 2px solid #68f153; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: rgb(133, 117, 253);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h1>Fine Details</h1></center>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Return Date</th>
+                    <th>Borrow Date</th>
+                    <th>Fine Days</th>
+                    <th>Fine Amount (INR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fine_detail in fine_details %}
+                <tr>
+                    <td>{{ fine_detail.book.title }}</td>
+                    <td>{{ fine_detail.book.category }}</td>
+                    <td>{{ fine_detail.return_date }}</td>
+                    <td>{{ fine_detail.borrow_date }}</td>
+                    <td>{{ fine_detail.days_overdue }}</td>
+                    <td>{{ fine_detail.fine_amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

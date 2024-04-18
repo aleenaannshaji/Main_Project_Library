@@ -1,0 +1,28 @@
+<!-- view_borrow_requests.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Requests</title>
+</head>
+<body>
+    <h1>Borrow Requests</h1>
+    {% if borrow_requests %}
+        <ul>
+            {% for request in borrow_requests %}
+                <li>
+                    {{ request.student.username }} wants to borrow "{{ request.book.title }}"
+                    <form method="post" action="{% url 'approve_borrow_request' request.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Approve</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No borrow requests.</p>
+    {% endif %}
+</body>
+</html>

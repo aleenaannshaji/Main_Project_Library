@@ -1,0 +1,75 @@
+<!-- view_request_status.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Your Book Request Status</h2>
+
+        {% if student_requests %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                        <th>Edition</th>
+                        <th>No.of Copies</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in student_requests %}
+                        <tr>
+                            <td>{{ request.title }}</td>
+                            <td>{{ request.author }}</td>
+                            <td>{{ request.publisher }}</td>
+                            <td>{{ request.category }}</td>
+                            <td>{{ request.edition }}</td>
+                            <td>{{ request.no_of_copies }}</td>
+                            <td>{{ request.request_date }}</td>
+                            <td>{% if request.is_approved %}Approved{% else %}Pending{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No book requests found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books List</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BOOK LIST</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Acc. No</th>
+                    <th>Call No</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year Published</th>
+                    <th>ISBN</th>
+                    <th>Publisher</th>
+                    <th>Pages</th>
+                    <th>Category</th>
+                    <th>Available Books</th>
+                    <th>Quantity</th>
+                    <th>Availability Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.accno }}</td>
+                        <td>{{ book.callno }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.year_of_published }}</td>
+                        <td>{{ book.isbn }}</td>
+                        <td>{{ book.publisher }}</td>
+                        <td>{{ book.pages }}</td>
+                        <td>{{ book.category }}</td>
+                        <td>{{ book.available_books }}</td>
+                        <td>{{ book.quantity }}</td>
+                        <td>{% if book.is_active %}Available{% else %}Unavailable{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

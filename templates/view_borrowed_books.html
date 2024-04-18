@@ -1,0 +1,171 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Borrowed Books</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>View Borrowed Books</h2>
+        <form method="get" action="{% url 'view_borrowed_books' %}">
+            <label for="search">Search by Title:</label>
+            <input type="text" name="q" id="search" value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+        {% if borrowed_books %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Borrow Date</th>
+                        <th>Return Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for borrowed_book in borrowed_books %}
+                        <tr>
+                            <td>{{ borrowed_book.student.name }}</td>
+                            <td>{{ borrowed_book.book.title }}</td>
+                            <td>{{ borrowed_book.book.author }}</td>
+                            <td>{{ borrowed_book.book.category }}</td>
+                            <td>{{ borrowed_book.borrow_date }}</td>
+                            <td>{{ borrowed_book.return_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No books are currently borrowed.</p>
+        {% endif %}
+    </div>
+</body><a href="{% url 'adminhome' %}"><button type="button" style="background-color: burlywood; width: 80px; height: 50px;">Go Back</button></a>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Borrowed Books</title>
+    <style>
+        /* Container styles */
+        .container {
+            max-width: 1500px;
+            margin: 20px auto;
+            border: 2px solid #3498db; /* Border color */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #ecf0f1; /* Background color */
+            padding: 20px; /* Padding inside the container */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+        }
+
+        /* Table styles */
+        .container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .container th, .container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .container th {
+            background-color: #559db3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>View Borrowed Books</h2><br>
+        <form method="get" action="{% url 'view_borrowed_books' %}">
+            <label for="search">Search by Title:</label><br><br>
+            <input type="text" name="q" id="search"  placeholder="Enter Title or Category" ">
+            <button type="submit">Search</button>
+        </form><br>
+        {% if borrowed_books %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Email ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for borrowed_book in borrowed_books %}
+                        <tr>
+                            <td>{{ borrowed_book.student.name }}</td>
+                            <td>{{ borrowed_book.student.email }}</td>
+                            <td>
+                                <form action="{% url 'return_book' borrowed_book.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="return-button">Return Book</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No books are currently borrowed.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // JavaScript to display alert message if book is successfully returned
+        const returnButton = document.querySelectorAll('.return-button');
+        returnButton.forEach(button => {
+            button.addEventListener('click', () => {
+                if (confirm('Are you sure you want to return this book?')) {
+                    alert('Book returned successfully!');
+                } else {
+                    event.preventDefault(); // Prevent form submission if user cancels
+                }
+            });
+        });
+    </script>
+
+
+</body><a href="{% url 'adminhome' %}"><button type="button" style="background-color: burlywood; width: 80px; height: 50px;">Go Back</button></a>
+
+</html>
